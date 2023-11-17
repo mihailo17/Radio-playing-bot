@@ -7,8 +7,11 @@ const path = require('node:path');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-
+// TODO: ovde je greska u kodu na njihovom sajtu, ovaj djavo trazi fajlove u root-u foldera commands a ne u subfolderima i nikad ne prepozna komande
+// TODO: izvrsiti ovo djubre dole
+const commandFolders = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+// ovde iznad je bilo files umesto folders, treba dodati jedan loop ispod, ima slican u deploy commands
+return;
 for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);
 	const command = require(filePath);
