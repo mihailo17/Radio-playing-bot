@@ -14,5 +14,5 @@
 3. If you want to create a new command, just add a new js file in commands directory and hit `node deploy-commands.js` to update
 4. To add a new radio station to the existing play command, just add a new object with name and value properties to the radios array
 5. **The value property needs to be a link to an _mp3_ file or it won't work**
-6. Look for a `src`` attribute on an `<audio></audio>` tag to find it
+6. Look for a `src` attribute on an `<audio></audio>` tag to find it
 7. That's it, **have fun!**
