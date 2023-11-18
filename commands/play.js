@@ -1,11 +1,12 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 
-const radios = {
-	juzni: "https://stream.radios.rs:9038/;*.mp3",
-	80: "https://naxidigital-80s128ssl.streaming.rs:8042/;*.mp3",
-	TDI: "https://streaming.tdiradio.com/tdiradio.mp3",
-}
+const radios = [
+	{	name: "juzni", value:"https://stream.radios.rs:9038/;*.mp3"},
+	{ 	name: "80", value: "https://naxidigital-80s128ssl.streaming.rs:8042/;*.mp3"},
+	{ 	name: "TDI", value: "https://streaming.tdiradio.com/tdiradio.mp3"},
+]
+const radioChoices = radios.map(radio => { return { name: radio.name, value: radio.name } });
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,7 +16,8 @@ module.exports = {
 			option.setName('station')
 				.setDescription('Select a radio station')
 				.setRequired(true)
-				.addChoices({name: 'Juzni', value: 'juzni'}, {name: '80s', value: '80'}, {name: 'TDI', value: 'TDI'})
+				.addChoices(...radioChoices)
+				
 		),
 	async execute(interaction) {
 		const member = interaction.member;
@@ -27,8 +29,9 @@ module.exports = {
 		}
 		
 		const station = interaction.options.getString('station');
-
-		const radioUrl = radios[station];
+		
+		const radioUrl = radios.find(radio => radio.name === station).value;
+	
 		if (!radioUrl) {
 			await interaction.reply('Invalid radio station!');
 			return;
@@ -49,4 +52,4 @@ module.exports = {
 
 		await interaction.reply(`Playing radio station: ${station}`);
 		},
-		};
+};
