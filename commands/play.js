@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
-const { guildId } = require('../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -16,11 +15,11 @@ module.exports = {
 		}
 		const player = createAudioPlayer();
 		const resource = createAudioResource('https://stream.radios.rs:9038/;*.mp3', {
-			inlineVolume: true
-		});
+        inlineVolume: true
+    });
 		joinVoiceChannel({
 			channelId: voiceChannel.id,
-			guildId: guildId,
+			guildId: voiceChannel.guild.id,
 			adapterCreator: interaction.guild.voiceAdapterCreator,
 		}).subscribe(player);
 		// message.guild.me.voice.setRequestToSpeak(true);
