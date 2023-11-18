@@ -33,7 +33,6 @@ client.once(Events.ClientReady, c => {
 
 
 client.on(Events.InteractionCreate, async interaction => {
-	console.log("pozvan")
 	if (!interaction.isChatInputCommand()) return;
 	const commandName = interaction.commandName;
 	const command = commands.find(cmd => cmd.name === commandName);
