@@ -1,6 +1,6 @@
-# Radio playing bot
+# Discord bot for playing radio
 ## Discord bot that gets audio from a radio and plays it in your voice channel
-### Not hosted anywhere because it is not exactly very budget friendly as it uses a lot of memory, I host it on my pc when I play with my friends
+### Not being hosted anywhere at the moment, I host it on my pc when I play with my friends
 
 ## How to run
 1. Run this by downloading or cloning the repo to your local environment
